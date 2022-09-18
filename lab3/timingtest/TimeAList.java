@@ -23,5 +23,23 @@ public class TimeAList {
 
     public static void timeAListConstruction() {
         // TODO: YOUR CODE HERE
+        AList<Integer> Ns = new AList<>();
+        AList<Double> times = new AList<>();
+        AList<Integer> opCounts = new AList<>();
+        int N = 1000;
+        Stopwatch sw;
+        for (int i = 1; i < 9; i ++) {
+            Ns.addLast(N);
+            opCounts.addLast(N);
+            AList<Integer> test = new AList<>();
+
+            sw = new Stopwatch();
+            for (int j = 0; j < N; j ++) {
+                test.addLast(1);
+            }
+            times.addLast(sw.elapsedTime());
+            N = N * 2;
+        }
+        TimeAList.printTimingTable(Ns, times, opCounts);
     }
 }
