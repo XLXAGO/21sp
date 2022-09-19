@@ -28,7 +28,10 @@ public class ArrayDeque <T> {
         if (isFull()) {
             resize(2 * capacity);
         }
-
+        if (isEmpty()) {
+            first = 0;
+            last = 0;
+        }
         if (first == 0) {
             first = capacity - 1;
         } else {
@@ -42,6 +45,10 @@ public class ArrayDeque <T> {
     public void addLast(T item) {
         if (isFull()) {
             resize(2 * capacity);
+        }
+        if (isEmpty()) {
+            first = 0;
+            last = 0;
         }
 
         if (last == capacity) {
@@ -71,6 +78,8 @@ public class ArrayDeque <T> {
     public T removeFirst() {
         if (isEmpty()) {
             return null;
+        } else if ((size-1) < 0.25*capacity && capacity > 8) {
+            resize(capacity / 2);
         }
         T temp = items[first];
         items[first] = null;
@@ -88,6 +97,8 @@ public class ArrayDeque <T> {
     public T removeLast() {
         if (isEmpty()) {
             return null;
+        } else if ((size-1) < 0.25*capacity && capacity > 8) {
+            resize(capacity / 2);
         }
         T temp = items[last];
         items[last] = null;
