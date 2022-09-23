@@ -2,7 +2,7 @@ package deque;
 
 
 // My data structure of circular sentinel link list :-)
-public class LinkedListDeque <T> {
+public class LinkedListDeque <T> implements Deque<T> {
 
     private Node sentinel;
     private int size = 0;
@@ -22,7 +22,7 @@ public class LinkedListDeque <T> {
         sentinel.next = sentinel;
         sentinel.prev = sentinel;
     }
-
+    @Override
     public void addFirst(T data) {
         Node temp = new Node(data);
         temp.next = sentinel.next;
@@ -31,7 +31,7 @@ public class LinkedListDeque <T> {
         sentinel.next = temp;
         size += 1;
     }
-
+    @Override
     public void addLast(T data) {
         Node temp = new Node(data);
         temp.prev = sentinel.prev;
@@ -40,19 +40,12 @@ public class LinkedListDeque <T> {
         sentinel.prev = temp;
         size += 1;
     }
-
-    public boolean isEmpty() {
-        if (size == 0) {
-            return true;
-        }else {
-            return false;
-        }
-    }
-
+    
+    @Override
     public int size() {
         return size;
     }
-
+    @Override
     public void printDeque() {
         Node cur = sentinel.next;
         for (int i = 0; i < size; i ++) {
@@ -60,7 +53,7 @@ public class LinkedListDeque <T> {
         }
         System.out.println();
     }
-
+    @Override
     public T removeFirst() {
         if (size == 0) {
             return null;
@@ -72,7 +65,7 @@ public class LinkedListDeque <T> {
             return temp.value;
         }
     }
-
+    @Override
     public T removeLast() {
         if (size == 0) {
             return null;
@@ -84,7 +77,7 @@ public class LinkedListDeque <T> {
             return temp.value;
         }
     }
-
+    @Override
     public T get(int index) {
         if (index > size) {
             return null;
