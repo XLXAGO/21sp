@@ -40,7 +40,7 @@ public class LinkedListDeque <T> implements Deque<T> {
         sentinel.prev = temp;
         size += 1;
     }
-    
+
     @Override
     public int size() {
         return size;

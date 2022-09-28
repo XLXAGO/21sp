@@ -1,6 +1,6 @@
 package deque;
 
-public class ArrayDeque <T> implements Deque<T> {
+public class ArrayDeque<T> implements Deque<T> {
 
     private T[] items;
     private int capacity;
@@ -14,8 +14,8 @@ public class ArrayDeque <T> implements Deque<T> {
         size = 0;
     }
 
-    public void resize(int capacity) {
-        T[] temp = (T[]) new Object[capacity];
+    public void resize(int sizer) {
+        T[] temp = (T[]) new Object[sizer];
         System.arraycopy(items, 0, temp, 0, size);
         items = temp;
     }
@@ -66,7 +66,7 @@ public class ArrayDeque <T> implements Deque<T> {
     }
     @Override
     public void printDeque() {
-        for (int i = 0; i < size; i ++) {
+        for (int i = 0; i < size; i++) {
             System.out.print(items[(first + i) % capacity] + " ");
         }
         System.out.println();
@@ -75,7 +75,7 @@ public class ArrayDeque <T> implements Deque<T> {
     public T removeFirst() {
         if (isEmpty()) {
             return null;
-        } else if ((size-1) < 0.25*capacity && capacity > 8) {
+        } else if ((size - 1) < 0.25 * capacity && capacity > 8) {
             resize(capacity / 2);
         }
         T temp = items[first];
